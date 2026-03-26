@@ -42,8 +42,7 @@ pipeline {
         stage('Deploy to ECS Fargate') {
             steps {
                 script {
-                    echo "🚀 Triggering ECS Rolling Update..."
-                    // Forcing a new deployment tells Fargate to pull the fresh 'latest' image we just pushed
+                    echo "Triggering ECS Rolling Update..."
                     sh "aws ecs update-service --cluster ${ECS_CLUSTER} --service ${ECS_SERVICE} --force-new-deployment"
                 }
             }
