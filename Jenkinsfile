@@ -25,7 +25,7 @@ pipeline {
                     docker run --rm \
                       -v ${WORKSPACE}:/workspace \
                       -w /workspace \
-                      aquasec/trivy:latest fs \
+                      aquasec/trivy:0.69.3 fs \
                       --exit-code 1 \
                       --severity HIGH,CRITICAL .
                     """
