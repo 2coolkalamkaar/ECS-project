@@ -17,6 +17,21 @@ pipeline {
     }
 
     stages {
+        stage('Security Scan (Trivy FS)') {
+            steps {
+                script {
+                    echo " Scanning filesystem using Trivy Docker Container..."
+                    sh """
+                    docker run --rm \
+                      -v ${WORKSPACE}:/workspace \
+                      -w /workspace \
+                      aquasec/trivy:latest fs \
+                      --exit-code 1 \
+                      --severity HIGH,CRITICAL .
+                    """
+                }
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 script {
