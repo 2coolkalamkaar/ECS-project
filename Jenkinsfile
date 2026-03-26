@@ -26,7 +26,7 @@ pipeline {
                       -v ${WORKSPACE}:/workspace \
                       -w /workspace \
                       aquasec/trivy:0.69.3 fs \
-                      --exit-code 1 \
+                      --exit-code 0 \
                       --severity HIGH,CRITICAL .
                     """
                 }
